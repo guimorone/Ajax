@@ -1,27 +1,11 @@
-//promises -> códigos assíncronos (não depende da "linha do tempo" do resto do código)
+//usando axios (botei nodemodules mas n soube usar pro axios ;(, ai botei o script no index.html msm)
+//axios biblioteca pra n ter que usar aquele XMLHttpRequest
 
-var minhaPromise = function () {
-    return new Promise((resolve, reject) => {
-        var xhr = new XMLHttpRequest();
-        xhr.open("GET", "https://api.github.com/users/guimorone");
-        xhr.send(null);
-
-        xhr.onreadystatechange = function() {
-            if(xhr.readyState === 4) { //variável quando a resposta voltou pra gente
-                if(xhr.status === 200) {
-                    resolve(JSON.parse(xhr.responseText));
-                } else{
-                    reject("Erro na requisição");
-                }
-            }
-        };
-    });
-};
-
-minhaPromise()
-    .then(response => {
-        console.log(response);
-    }) //executado quando chamar o resolve
-    .catch(error => {
-        console.log(error);
-    }); //executado quando chamar o reject
+//só informar o método .get .put .delete etc
+axios.get("https://api.github.com/users/guimorone")
+  .then((response) => {
+    console.log(response);
+  }) //executado quando chamar o resolve
+  .catch((error) => {
+    console.log(error);
+  }); //executado quando chamar o reject
